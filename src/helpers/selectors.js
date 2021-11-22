@@ -1,4 +1,4 @@
-export default function getAppointmentsForDay(state, day) {
+export function getAppointmentsForDay(state, day) {
   const dayArr = state.days;
   const appointmentsForDay = [];
 
@@ -8,7 +8,6 @@ export default function getAppointmentsForDay(state, day) {
       const appointmentArr = Object.values(state.appointments);
 
       for (const appointment of appointmentArr) {
-        console.log(appointment)
         if (days.appointments.includes(appointment.id)) {
           appointmentsForDay.push(appointment)
         }
@@ -17,6 +16,12 @@ export default function getAppointmentsForDay(state, day) {
     } 
   }
   return [];  
-} 
-  
+}
 
+export function getInterview(state, interview) {
+  if (!interview) {
+    return null
+  }
+  const interviewerData = state.interviewers[interview.interviewer]
+  return {...interview, interviewer: interviewerData}
+}
